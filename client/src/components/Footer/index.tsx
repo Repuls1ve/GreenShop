@@ -17,7 +17,7 @@ type SocialMediaLinkProps = {
 
 const SocialMediaLink: FC<SocialMediaLinkProps> = ({icon, alt, href}) => {
     return (
-        <a href={href} className={styles.iconContainer} target='_blank' rel='noopener'>
+        <a href={href} className={styles.iconContainer} target='_blank' rel='noreferrer'>
             <img src={icon} alt={alt}/>
         </a>
     )
@@ -25,6 +25,7 @@ const SocialMediaLink: FC<SocialMediaLinkProps> = ({icon, alt, href}) => {
 
 const Footer: FC = () => {
     return (
+        <>
         <footer className={styles.footer}>
             <div className={styles.container}>
                 <section className={styles.section}>
@@ -68,6 +69,10 @@ const Footer: FC = () => {
                 </section>
             </div>
         </footer>
+        <div className={styles.copy}>
+            <small className={styles.copyText}>&copy; 2021 GreenShop. All Rights Reserved.</small>
+        </div>
+        </>
     )
 }
 

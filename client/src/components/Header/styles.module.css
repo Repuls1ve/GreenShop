@@ -6,7 +6,7 @@
 .container {
   height: 100%;
   width: 100%;
-  border-bottom: 0.3px solid rgba(70, 163, 88, 0.5);
+  border-bottom: 2px solid #46a3585a;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -34,21 +34,26 @@
 
 .nav {
   display: flex;
+  height: 100%;
   flex-basis: 25%;
   justify-content: space-between;
-  align-items: center;
 }
 
-.selectedLink {
+.activeLink {
+  display: flex;
+  align-items: center;
   font-family: Cera Pro Regular;
   font-size: 20px;
   font-weight: 700;
   font-style: normal;
   text-decoration: none;
   color: #000;
+  border-bottom: 3px solid #46a358;
 }
 
 .link {
+  display: flex;
+  align-items: center;
   font-family: Cera Pro Regular;
   font-size: 20px;
   font-weight: 400;
@@ -116,8 +121,4 @@
   .nav {
     flex-basis: 40%;
   }
-}
-
-/* burger */
-@media screen and (max-width: 900px) {
 }

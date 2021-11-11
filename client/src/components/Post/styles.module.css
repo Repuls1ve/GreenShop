@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-basis: 23%;
+}
+
+.image {
+  display: flex;
+  flex-basis: 53%;
+  background-color: whitesmoke;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 11px;
+  flex-basis: 47%;
+}
+
+.additions {
+  margin: 0;
+  font-family: Cera Pro Medium;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: #46a358;
+}
+
+.title {
+  margin: 4px 0;
+  font-family: Cera Pro Regular;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+  color: #3d3d3d;
+}
+
+.text {
+  margin: 0;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #727272;
+}
+
+.continue {
+  display: flex;
+  align-items: center;
+}
+
+.read {
+  margin: 0;
+  font-family: Cera Pro Bold;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #3d3d3d;
+  cursor: pointer;
+}
+
+.read:hover {
+  color: #46a358;
+}

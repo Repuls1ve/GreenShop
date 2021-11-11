@@ -1,0 +1,181 @@
+.section {
+  display: flex;
+  width: 100%;
+  height: 250px;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  flex-basis: 97%;
+}
+
+.advantages {
+  display: flex;
+  flex-basis: 60%;
+  justify-content: space-between;
+}
+
+.advantage {
+  display: flex;
+  flex-basis: 30%;
+  border-right: 2px solid #46a3582a;
+}
+
+.advantageLast {
+  display: flex;
+  flex-basis: 30%;
+}
+
+.image {
+  display: flex;
+  width: 100%;
+  flex-basis: 50%;
+  width: 140px;
+  height: auto;
+}
+
+.title {
+  margin: 0;
+  display: flex;
+  width: 100%;
+  flex-basis: 12%;
+  font-family: Cera Pro Regular;
+  font-weight: 700;
+  font-size: 18px;
+  color: #3d3d3d;
+}
+
+.description {
+  margin: 0;
+  display: flex;
+  width: 100%;
+  flex-basis: 38%;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 25px;
+  color: #727272;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding-right: 15%;
+}
+
+.newsletters {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 40%;
+}
+
+.newslettersContent {
+  display: flex;
+  flex-direction: column;
+  padding-right: 10%;
+}
+
+.newslettersTitle {
+  display: flex;
+  font-family: Cera Pro Regular;
+  font-size: 22px;
+  font-weight: 700;
+  color: #3d3d3d;
+}
+
+.newslettersDescription {
+  display: flex;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 25px;
+  color: #727272;
+}
+
+.inputContainer {
+  display: flex;
+  height: 50px;
+  width: 100%;
+}
+
+.input {
+  display: flex;
+  width: 70%;
+  padding-left: 3%;
+  background-color: whitesmoke;
+  border: none;
+  outline: none;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-style: 15px;
+  color: #3d3d3d;
+  border-radius: 6px 0 0 6px;
+  -webkit-box-shadow: 0px 0px 52px -20px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow: 0px 0px 52px -20px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 0px 52px -20px rgba(0, 0, 0, 0.14);
+}
+
+.join {
+  display: flex;
+  width: 30%;
+  height: 100%;
+  background-color: #46a358;
+  border-radius: 0px 8px 8px 0px;
+  justify-content: center;
+  align-items: center;
+  font-family: Cera Pro Regular;
+  font-weight: 700;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+}
+
+input.input::placeholder {
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-style: 15px;
+  color: #acacac;
+}
+
+@media screen and (max-width: 1700px) {
+  .image {
+    width: 120px;
+  }
+}
+
+@media screen and (max-width: 1430px) {
+  .image {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 1145px) {
+  .newslettersDescription {
+    margin-top: 5px;
+  }
+
+  .newslettersTitle {
+    margin-bottom: 8px;
+  }
+
+  .image {
+    width: 70px;
+  }
+}
+
+@media screen and (max-width: 1064px) {
+  .inputContainer {
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 985px) {
+  .description {
+    line-height: 22px;
+  }
+}

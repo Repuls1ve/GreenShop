@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 import Button from '../Button'
 
@@ -11,6 +11,10 @@ import Enter from '../../assets/icons/icon-enter.png'
 import styles from './styles.module.css'
 
 const Header: FC = () => {
+    const switchActive = ({isActive}: {
+        isActive: boolean
+    }) => isActive ? styles.activeLink : styles.link
+
     return (
         <header className={styles.header}>
             <div className={styles.container}>
@@ -19,10 +23,10 @@ const Header: FC = () => {
                     <h2 className={styles.name}>GreenShop</h2>
                 </div>
                 <nav className={styles.nav}>
-                    <Link to='/' className={styles.selectedLink}>Home</Link>
-                    <Link to='shop' className={styles.link}>Shop</Link>
-                    <Link to='plant-care' className={styles.link}>Plant Care</Link>
-                    <Link to='blogs' className={styles.link}>Blogs</Link>
+                    <NavLink to='/' className={switchActive}>Home</NavLink>
+                    <NavLink to='shop' className={switchActive}>Shop</NavLink>
+                    <NavLink to='plant-care' className={switchActive}>Plant Care</NavLink>
+                    <NavLink to='blogs' className={switchActive}>Blogs</NavLink>
                 </nav>
                 <div className={styles.login}>
                     <img className={styles.search} src={Search} alt='search'/>
