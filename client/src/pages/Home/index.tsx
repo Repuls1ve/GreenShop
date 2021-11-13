@@ -4,6 +4,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect'
 import PostsSection from '../../components/Posts'
 import SuggestionsSection from '../../components/Suggestions'
 import Banner from '../../components/Banner'
+import ShopSection from '../../components/Shop'
 
 const Home: FC = () => {
     const {isMobile} = useDeviceDetect()
@@ -17,9 +18,7 @@ const Home: FC = () => {
         :
         <div>
             <Banner />
-            
-            <h1>Home</h1>
-            
+            <ShopSection />
             <SuggestionsSection />
             <PostsSection />
         </div>
