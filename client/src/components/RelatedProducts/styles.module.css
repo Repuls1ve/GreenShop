@@ -1,0 +1,39 @@
+.section {
+  display: flex;
+  width: 100%;
+  margin-bottom: 35px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.heading {
+  height: 25px;
+  border-bottom: 1px solid #46a3585a;
+}
+
+.title {
+  margin: 0;
+  font-family: Cera Pro Regular;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 16px;
+  color: #46a358;
+}
+
+.images {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 19%;
+  height: 100%;
+  cursor: pointer;
+}

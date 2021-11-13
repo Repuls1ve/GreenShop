@@ -3,6 +3,7 @@
   flex-direction: column;
   flex-basis: 33%;
   height: 33%;
+  align-items: center;
   cursor: pointer;
 }
 

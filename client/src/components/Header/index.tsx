@@ -24,7 +24,7 @@ const Header: FC = () => {
                 </div>
                 <nav className={styles.nav}>
                     <NavLink to='/' className={switchActive}>Home</NavLink>
-                    <NavLink to='shop' className={switchActive}>Shop</NavLink>
+                    <NavLink to='shop/test-sku' className={switchActive}>Shop</NavLink>
                     <NavLink to='plant-care' className={switchActive}>Plant Care</NavLink>
                     <NavLink to='blogs' className={switchActive}>Blogs</NavLink>
                 </nav>

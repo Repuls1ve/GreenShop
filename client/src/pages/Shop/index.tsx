@@ -1,5 +1,8 @@
 import {FC} from 'react'
 
+import ProductViewSection from '../../components/ProductView'
+import RelatedProductsSection from '../../components/RelatedProducts'
+
 import useDeviceDetect from '../../hooks/useDeviceDetect'
 
 const Shop: FC = () => {
@@ -8,12 +11,14 @@ const Shop: FC = () => {
     return (
         <>
         {isMobile ?
-        <div>
+        <main>
             <h1>Shop Mobile</h1>
-        </div>
+        </main>
         : 
-        <div>
-        </div>
+        <main>
+            <ProductViewSection />
+            <RelatedProductsSection />
+        </main>
         }
         </>
         

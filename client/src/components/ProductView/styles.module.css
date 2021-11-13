@@ -1,0 +1,310 @@
+.section {
+  display: flex;
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+.heading {
+  display: flex;
+  flex-basis: 50%;
+  width: 100%;
+}
+
+.descriptions {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  padding-top: 30px;
+}
+
+.pictures {
+  display: flex;
+  margin-right: 20px;
+  flex-direction: column;
+  flex-basis: 100px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picture {
+  display: flex;
+  flex-basis: 35%;
+  justify-content: center;
+  align-items: center;
+}
+
+.headingDescriptions {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 55%;
+  height: 100%;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+.imageContainer {
+  display: flex;
+  width: 100%;
+  flex-basis: 100px;
+}
+
+.mainImageContainer {
+  display: flex;
+  height: auto;
+  height: 100%;
+  flex-basis: 70%;
+}
+
+.mainImage {
+  display: flex;
+  align-self: center;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 15px;
+  font-family: Cera Pro Bold;
+  font-size: 28px;
+  line-height: 16px;
+  color: #3d3d3d;
+}
+
+.cost {
+  margin-bottom: 15px;
+  margin-top: 5px;
+  font-family: Cera Pro Bold;
+  font-size: 22px;
+  line-height: 16px;
+  color: #46a358;
+}
+
+.subTitle {
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: Cera Pro Regular;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 16px;
+  color: #3d3d3d;
+}
+
+.shortDescription {
+  margin: 0;
+  margin-bottom: 5px;
+  width: 75%;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 14px;
+  color: #727272;
+  line-height: 22px;
+}
+
+.sizes {
+  display: flex;
+}
+
+.size {
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  height: 28px;
+  width: 28px;
+  border: 1px solid #eaeaea;
+  cursor: pointer;
+}
+
+.sizeActive {
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  height: 28px;
+  width: 28px;
+  border: 1px solid #46a358;
+  cursor: pointer;
+}
+
+.sizeName {
+  font-family: Cera Pro Bold;
+  font-size: 18px;
+  line-height: 16px;
+  color: #727272;
+}
+
+.sizeNameActive {
+  font-family: Cera Pro Bold;
+  font-size: 18px;
+  line-height: 16px;
+  color: #46a358;
+}
+
+.quantity {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.decrease {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #46a358 0%, rgba(70, 163, 88, 0.8) 100%);
+  width: 33px;
+  height: 38px;
+  border-radius: 29px;
+  font-family: Cera Pro Regular;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.increase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #46a358 0%, rgba(70, 163, 88, 0.8) 100%);
+  width: 33px;
+  height: 38px;
+  border-radius: 29px;
+  font-family: Cera Pro Regular;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.quantityValue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Cera Pro Regular;
+  font-size: 18px;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.buyButton {
+  margin-left: 25px;
+  width: 130px;
+  height: 40px;
+  font-family: Cera Pro Medium;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.addToCartButton {
+  margin-left: 10px;
+  width: 130px;
+  height: 40px;
+  font-family: Cera Pro Medium;
+  font-size: 15px;
+  color: #46a358;
+  text-transform: uppercase;
+  background-color: white;
+  border: 1px solid #46a358;
+}
+
+.addToFavourites {
+  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  font-family: Cera Pro Medium;
+  font-size: 15px;
+  color: #46a358;
+  text-transform: uppercase;
+  background-color: white;
+  border: 1px solid #46a358;
+}
+
+.favouriteIcon {
+  margin-top: 2px;
+}
+
+.metaInfo {
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 16px;
+  color: #a5a5a5;
+}
+
+.metaValue {
+  color: #3d3d3d;
+}
+
+.sharing {
+  display: flex;
+  margin-top: 5px;
+}
+
+.sharingTitle {
+  margin: 0;
+  margin-right: 15px;
+  font-family: Cera Pro Regular;
+  font-size: 15px;
+  line-height: 15px;
+  color: #3d3d3d;
+}
+
+.sharingIcon {
+  cursor: pointer;
+  margin-right: 25px;
+}
+
+.branches {
+  display: flex;
+  flex-basis: 25px;
+  border-bottom: 1px solid #46a3585a;
+}
+
+.branchName {
+  margin: 0;
+  margin-right: 25px;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 16px;
+  color: #3d3d3d;
+  cursor: pointer;
+}
+
+.branchNameActive {
+  margin: 0;
+  margin-right: 25px;
+  font-family: Cera Pro Regular;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 16px;
+  color: #46a358;
+  border-bottom: 2px solid #46a358;
+  cursor: pointer;
+}
+
+.description {
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #727272;
+}

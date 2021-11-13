@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import {FC} from 'react'
 import {Routes, Route} from 'react-router-dom'
 
 import Layout from '../components/Layout'
@@ -11,7 +11,7 @@ const AppRouter: FC = () => {
         <Routes>
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>
-                <Route path='shop' element={<Shop/>}/>
+                <Route path='shop/:sku' element={<Shop/>}/>
             </Route>
         </Routes>
         </>

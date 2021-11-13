@@ -171,6 +171,7 @@ const ShopSection: FC = () => {
                     <div className={styles.content}>
                         {products.map(product => (
                             <Product
+                            key={product.name}
                             product={product}
                             />
                         ))}
