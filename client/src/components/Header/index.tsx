@@ -1,7 +1,8 @@
-import {FC} from 'react'
+import {FC, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 
 import Button from '../Button'
+import AuthModal from '../AuthModal'
 
 import Logo from '../../assets/icons/icon-logo.png'
 import Search from '../../assets/icons/icon-search.png'
@@ -11,11 +12,20 @@ import Enter from '../../assets/icons/icon-enter.png'
 import styles from './styles.module.css'
 
 const Header: FC = () => {
+    const [isModalOpen, setModalOpen] = useState(false)
+
+    const openModal = () => setModalOpen(true)
+
     const switchActive = ({isActive}: {
         isActive: boolean
     }) => isActive ? styles.activeLink : styles.link
 
     return (
+        <>
+        <AuthModal
+        isOpen={isModalOpen}
+        setIsOpen={setModalOpen}
+        />
         <header className={styles.header}>
             <div className={styles.container}>
                 <div className={styles.company}>
@@ -31,13 +41,16 @@ const Header: FC = () => {
                 <div className={styles.login}>
                     <img className={styles.search} src={Search} alt='search'/>
                     <img className={styles.cart} src={Cart} alt='cart'/>
-                    <Button>
+                    <Button
+                    onClick={openModal}
+                    >
                         <img className={styles.enter} src={Enter} alt='enter'/>
                         Login
                     </Button>
                 </div>
             </div>
         </header>
+        </>
     )
 }
 

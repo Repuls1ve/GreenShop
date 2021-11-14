@@ -82,7 +82,6 @@
 }
 
 .enter {
-  /* convert png to white */
   filter: invert(100%) sepia(0%) saturate(3556%) hue-rotate(223deg) brightness(115%) contrast(100%);
   margin-right: 3px;
 }

@@ -1,0 +1,179 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -250px;
+  margin-top: -325px;
+  width: 500px;
+  background-color: white;
+  outline: none;
+}
+
+.modalContainer {
+  padding: 10px 10px 0 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalClose {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.modalCloseIcon {
+  cursor: pointer;
+}
+
+.modalContent {
+  padding-left: 80px;
+  padding-right: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalBranches {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 35px;
+}
+
+.modalBranch {
+  font-family: Cera Pro Regular;
+  font-size: 20px;
+  line-height: 16px;
+  color: #3d3d3d;
+  cursor: pointer;
+}
+
+.modalBranchActive {
+  font-family: Cera Pro Regular;
+  font-size: 20px;
+  line-height: 16px;
+  color: #46a358;
+  cursor: pointer;
+}
+
+.modalDivider {
+  margin: 10px 5px 0 5px;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 16px;
+  color: #3d3d3d;
+}
+
+.modalBranchesText {
+  margin: 0;
+}
+
+.modalText {
+  margin: 0;
+  margin-bottom: 15px;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #3d3d3d;
+}
+
+.textField {
+  margin-bottom: 15px;
+}
+
+.inputPassword {
+  letter-spacing: 2.5px;
+}
+
+.inputPassword::placeholder {
+  letter-spacing: normal;
+}
+
+.forgetPassword {
+  margin: 10px 0 15px 0;
+  align-self: flex-end;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 16px;
+  color: #46a358;
+  cursor: pointer;
+}
+
+.authButton {
+  font-family: Cera Pro Medium;
+  font-weight: 400;
+  height: 40px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.separator {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 16px;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  margin-top: 3.5px;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.25em;
+}
+
+.serviceButton {
+  width: 100%;
+  margin-bottom: 15px;
+  background-color: white;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  height: 40px;
+}
+
+.serviceButtonText {
+  font-family: Cera Pro Medium;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 16px;
+  color: #727272;
+}
+
+.serviceIconGoogle {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.serviceIconFacebook {
+  margin-right: 5px;
+  width: 12px;
+  height: 20px;
+}
+
+.decorative {
+  margin-top: 30px;
+  height: 10px;
+  width: 100%;
+  background-color: #46a358;
+}
