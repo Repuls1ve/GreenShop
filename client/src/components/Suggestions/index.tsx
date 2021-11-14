@@ -1,9 +1,6 @@
 import {FC} from 'react'
 import Button from '../Button'
 
-import FirstSuggestion from '../../assets/images/image-first-suggestion.png'
-import SecondSuggestion from '../../assets/images/image-second-suggestion.png'
-
 import styles from './styles.module.css'
 
 const SuggestionsSection: FC = () => {
@@ -11,7 +8,7 @@ const SuggestionsSection: FC = () => {
         <section className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.column}>
-                    <img className={styles.firstImage} src={FirstSuggestion} alt='suggestion'/>
+                    <img className={styles.firstImage} src='https://i.ibb.co/BqJBHLK/image-first-suggestion.png' alt='suggestion'/>
                     <div className={styles.content}>
                         <h2 className={styles.title}>Summer cactus{<br/>}& succulents</h2>
                         <h3 className={styles.text}>We are an online plant shop offering a wide range of cheap and trendy plants</h3>
@@ -19,7 +16,7 @@ const SuggestionsSection: FC = () => {
                     </div>
                 </div>
                 <div className={styles.column}>
-                    <img className={styles.secondImage} src={SecondSuggestion} alt='suggestion'/>
+                    <img className={styles.secondImage} src='https://i.ibb.co/pxLCydh/image-second-suggestion.png' alt='suggestion'/>
                     <div className={styles.content}>
                         <h2 className={styles.title}>Styling Trends {<br/>}& much more</h2>
                         <h3 className={styles.text}>We are an online plant shop offering a wide range of cheap and trendy plants</h3>

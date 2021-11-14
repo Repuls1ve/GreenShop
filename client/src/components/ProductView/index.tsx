@@ -1,19 +1,13 @@
 import {FC} from 'react'
 
-import ProductViewImage from '../../assets/images/image-product-view.png'
-import HugeProductViewImage from '../../assets/images/image-product-view-huge.png'
-import FavouriteIcon from '../../assets/icons/icon-favourite.png'
-import FacebookIcon from '../../assets/icons/icon-facebook-black.png'
-import LinkedInIcon from '../../assets/icons/icon-linkedin-black.png'
-
 import Button from '../Button'
 
 import styles from './styles.module.css'
 
 const pictures: any[] = [
-    ProductViewImage,
-    ProductViewImage,
-    ProductViewImage,
+    'https://i.ibb.co/fSTT9ZY/image-product-view.png',
+    'https://i.ibb.co/fSTT9ZY/image-product-view.png',
+    'https://i.ibb.co/fSTT9ZY/image-product-view.png',
 ] 
 
 const sizes: string[] = [
@@ -36,7 +30,7 @@ const ProductViewSection: FC = () => {
                     </div>
                     <div className={styles.picture}>
                         <div className={styles.mainImageContainer}>
-                            <img src={HugeProductViewImage} className={styles.mainImage} alt='product'/>
+                            <img src='https://i.ibb.co/QrPmmJV/image-product-view-huge.png' className={styles.mainImage} alt='product'/>
                         </div>
                     </div>
                     <div className={styles.headingDescriptions}>
@@ -59,7 +53,7 @@ const ProductViewSection: FC = () => {
                             <Button className={styles.buyButton}>Buy now</Button>
                             <Button className={styles.addToCartButton}>Add to cart</Button>
                             <Button className={styles.addToFavourites}>
-                                <img className={styles.favouriteIcon} src={FavouriteIcon} alt='favourite'/>
+                                <img className={styles.favouriteIcon} src='https://i.ibb.co/cbgVRp8/icon-favourite.png' alt='favourite'/>
                             </Button>
                         </div>
                         <h3 className={styles.metaInfo}>SKU: <span className={styles.metaValue}>1995751877966</span></h3>
@@ -67,8 +61,8 @@ const ProductViewSection: FC = () => {
                         <h3 className={styles.metaInfo}>Tags: <span className={styles.metaValue}>Home, Garden, Plants</span></h3>
                         <div className={styles.sharing}>
                             <h3 className={styles.sharingTitle}>Share this product:</h3>
-                            <img className={styles.sharingIcon} src={FacebookIcon} alt='facebook'/>
-                            <img className={styles.sharingIcon} src={LinkedInIcon} alt='linked-in'/>
+                            <img className={styles.sharingIcon} src='https://i.ibb.co/p3rbsSz/icon-facebook-black.png' alt='facebook'/>
+                            <img className={styles.sharingIcon} src='https://i.ibb.co/HBypvhX/icon-linkedin-black.png' alt='linked-in'/>
                         </div>
                     </div>
                 </div>

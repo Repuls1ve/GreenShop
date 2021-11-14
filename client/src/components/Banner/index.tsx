@@ -1,8 +1,6 @@
 import {FC} from 'react'
 import Button from '../Button'
 
-import BannerImage from '../../assets/images/image-banner.png'
-
 import styles from './styles.module.css'
 
 const Banner: FC = () => {
@@ -15,7 +13,7 @@ const Banner: FC = () => {
                     <h5 className={styles.description}>We are an online plant shop offering a wide range of cheap and trendy plants. Use our plants to create an unique Urban Jungle. Order your favorite plants!</h5>
                     <Button className={styles.button}>Shop now</Button>
                 </div>
-                <img className={styles.image} src={BannerImage} alt='banner'/>
+                <img className={styles.image} src='https://i.ibb.co/V2c9T5W/image-banner.png' alt='banner'/>
             </div>
         </section>
     )

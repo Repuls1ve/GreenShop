@@ -4,11 +4,6 @@ import {NavLink} from 'react-router-dom'
 import Button from '../Button'
 import AuthModal from '../AuthModal'
 
-import Logo from '../../assets/icons/icon-logo.png'
-import Search from '../../assets/icons/icon-search.png'
-import Cart from '../../assets/icons/icon-cart.png'
-import Enter from '../../assets/icons/icon-enter.png'
-
 import styles from './styles.module.css'
 
 const Header: FC = () => {
@@ -29,7 +24,7 @@ const Header: FC = () => {
         <header className={styles.header}>
             <div className={styles.container}>
                 <div className={styles.company}>
-                    <img className={styles.logo} src={Logo} alt='logo'/>
+                    <img className={styles.logo} src='https://i.ibb.co/vqqN18b/icon-logo.png' alt='logo'/>
                     <h2 className={styles.name}>GreenShop</h2>
                 </div>
                 <nav className={styles.nav}>
@@ -39,12 +34,12 @@ const Header: FC = () => {
                     <NavLink to='blogs' className={switchActive}>Blogs</NavLink>
                 </nav>
                 <div className={styles.login}>
-                    <img className={styles.search} src={Search} alt='search'/>
-                    <img className={styles.cart} src={Cart} alt='cart'/>
+                    <img className={styles.search} src='https://i.ibb.co/QPJXwBv/icon-search.png' alt='search'/>
+                    <img className={styles.cart} src='https://i.ibb.co/R08dtHQ/icon-cart.png' alt='cart'/>
                     <Button
                     onClick={openModal}
                     >
-                        <img className={styles.enter} src={Enter} alt='enter'/>
+                        <img className={styles.enter} src='https://i.ibb.co/Xs82gt5/icon-enter.png' alt='enter'/>
                         Login
                     </Button>
                 </div>

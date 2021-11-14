@@ -14,21 +14,20 @@ const Layout: FC = () => {
     const {isMobile} = useDeviceDetect()
 
     return (
-        <div className={styles.container}>
-            {isMobile ?
-            <>
+        <>
+        {isMobile ?
+        <div className={styles.containerMobile}>
             <Outlet />
-            </>
-            :    
-            <>
+        </div>
+        :    
+        <div className={styles.container}>
             <Header />
-            
             <Outlet />
             <NewslettersSection />
             <ContactSection />
             <Footer />
-            </>}
-        </div>
+        </div>}
+        </>
     )
 }
 

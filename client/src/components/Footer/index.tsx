@@ -1,12 +1,6 @@
 import {FC} from 'react'
 import {Link} from 'react-router-dom'
 
-import Facebook from '../../assets/icons/icon-facebook.png'
-import Instagram from '../../assets/icons/icon-instagram.png'
-import Twitter from '../../assets/icons/icon-twitter.png'
-import LinkedIn from '../../assets/icons/icon-linkedin.png'
-import Payment from '../../assets/icons/icon-payment.png'
-
 import styles from './styles.module.css'
 
 type SocialMediaLinkProps = {
@@ -56,15 +50,15 @@ const Footer: FC = () => {
                     <section className={styles.media}>
                         <h3 className={styles.socialTitle}>Social Media</h3>
                         <div className={styles.mediaLinks}>
-                            <SocialMediaLink href='' icon={Facebook} alt='facebook'/>
-                            <SocialMediaLink href='' icon={Instagram} alt='instagram'/>
-                            <SocialMediaLink href='' icon={Twitter} alt='twitter'/>
-                            <SocialMediaLink href='' icon={LinkedIn} alt='linkedin'/>
+                            <SocialMediaLink href='' icon='https://i.ibb.co/5KH3jsP/icon-facebook.png' alt='facebook'/>
+                            <SocialMediaLink href='' icon='https://i.ibb.co/4YwMjzj/icon-instagram.png' alt='instagram'/>
+                            <SocialMediaLink href='' icon='https://i.ibb.co/x6rXzLj/icon-twitter.png' alt='twitter'/>
+                            <SocialMediaLink href='' icon='https://i.ibb.co/VW6qq8g/icon-linkedin.png' alt='linkedin'/>
                         </div>
                     </section>
                     <section className={styles.payment}>
                         <h3 className={styles.socialTitle}>We accept</h3>
-                        <img className={styles.iconPayment} src={Payment} alt='payment'/>
+                        <img className={styles.iconPayment} src='https://i.ibb.co/M7BNp7K/icon-payment.png' alt='payment'/>
                     </section>
                 </section>
             </div>

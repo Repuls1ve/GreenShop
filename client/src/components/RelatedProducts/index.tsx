@@ -1,34 +1,33 @@
 import {FC} from 'react'
 import {ProductPreview} from '../../models/IProduct'
 
-import ProductImage from '../../assets/images/image-product-preview.png'
 import Product from '../Product'
 
 import styles from './styles.module.css'
 
 const products: ProductPreview[] = [
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Barberton Daisy',
         cost: '$119.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Angel Wing Begonia',
         cost: '$169.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'African Violet',
         cost: '$199.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Beach Spider Lily',
         cost: '$129.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Blushing Bromeliad',
         cost: '$139.00'
     }

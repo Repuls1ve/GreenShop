@@ -7,9 +7,6 @@ import Range from '../Range'
 import Button from '../Button'
 import Product from '../Product'
 
-import SaleBanner from '../../assets/images/image-sale-banner.png'
-import ProductImage from '../../assets/images/image-product-preview.png'
-
 import styles from './styles.module.css'
 
 const sizes: SizeCategorie[] = [
@@ -68,47 +65,47 @@ const categories: Categorie[] = [
 
 const products: ProductPreview[] = [
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Barberton Daisy',
         cost: '$119.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Angel Wing Begonia',
         cost: '$169.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'African Violet',
         cost: '$199.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Beach Spider Lily',
         cost: '$129.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Blushing Bromeliad',
         cost: '$139.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Aluminm Plant',
         cost: '$119.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Bird\'s Nest Fern',
         cost: '$99.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Broadleaf Lady Palm',
         cost: '$59.00'
     },
     {
-        image: ProductImage,
+        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
         name: 'Chinese Evergreen',
         cost: '$39.00'
     }
@@ -158,7 +155,7 @@ const ShopSection: FC = () => {
                         ))}
                     </div>
                     <div className={styles.saleBanner}>
-                        <img className={styles.saleImage} src={SaleBanner} alt='sale'/>
+                        <img className={styles.saleImage} src='https://i.ibb.co/rxrMDmX/image-sale-banner.png' alt='sale'/>
                     </div>
                 </div>
                 <div className={styles.products}>

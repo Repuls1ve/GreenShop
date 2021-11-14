@@ -4,10 +4,6 @@ import ReactModal from 'react-modal'
 import TextField from '../TextField'
 import Button from '../Button'
 
-import Close from '../../assets/icons/icon-close.png'
-import Google from '../../assets/icons/icon-google-color.png'
-import Facebook from '../../assets/icons/icon-facebook-color.png'
-
 import styles from './styles.module.css'
 
 interface AuthModalProps {
@@ -44,11 +40,11 @@ const RegisterForm: FC = () => {
             <Button className={styles.authButton}>Register</Button>
             <div className={styles.separator}>Or register with</div>
             <Button className={styles.serviceButton}>
-                <img className={styles.serviceIconGoogle} src={Google} alt='google'/>
+                <img className={styles.serviceIconGoogle} src='https://i.ibb.co/qDpRMyC/icon-google-color.png' alt='google'/>
                 <h3 className={styles.serviceButtonText}>Continue with Google</h3>
             </Button>
             <Button className={styles.serviceButton}>
-                <img className={styles.serviceIconFacebook} src={Facebook} alt='facebook'/>
+                <img className={styles.serviceIconFacebook} src='https://i.ibb.co/ZmJbZfz/icon-facebook-color.png' alt='facebook'/>
                 <h3 className={styles.serviceButtonText}>Continue with Facebook</h3>
             </Button>
         </form>
@@ -72,11 +68,11 @@ const LoginForm: FC = () => {
             <Button className={styles.authButton}>Login</Button>
             <div className={styles.separator}>Or login with</div>
             <Button className={styles.serviceButton}>
-                <img className={styles.serviceIconGoogle} src={Google} alt='google'/>
+                <img className={styles.serviceIconGoogle} src='https://i.ibb.co/qDpRMyC/icon-google-color.png' alt='google'/>
                 <h3 className={styles.serviceButtonText}>Login with Google</h3>
             </Button>
             <Button className={styles.serviceButton}>
-                <img className={styles.serviceIconFacebook} src={Facebook} alt='facebook'/>
+                <img className={styles.serviceIconFacebook} src='https://i.ibb.co/ZmJbZfz/icon-facebook-color.png' alt='facebook'/>
                 <h3 className={styles.serviceButtonText}>Login with Facebook</h3>
             </Button>
         </form>
@@ -100,7 +96,7 @@ const AuthModal: FC<AuthModalProps> = ({isOpen, setIsOpen}) => {
         >
             <div className={styles.modalContainer}>
                 <div className={styles.modalClose}>
-                    <img className={styles.modalCloseIcon} onClick={closeModal} src={Close} alt='close'/>
+                    <img className={styles.modalCloseIcon} onClick={closeModal} src='https://i.ibb.co/WnsYZpr/icon-close.png' alt='close'/>
                 </div>
                 <div className={styles.modalContent}>
                     <div className={styles.modalBranches}>
