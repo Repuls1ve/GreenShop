@@ -1,39 +1,21 @@
-import {FC} from 'react'
-import {ProductPreview} from '../../models/IProduct'
+import {FC, useEffect} from 'react'
+
+import {useAppDispatch, useAppSelector} from '../../hooks/redux'
+import {receive} from '../../store/slices/products-slice'
 
 import Product from '../Product'
 
 import styles from './styles.module.css'
 
-const products: ProductPreview[] = [
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Barberton Daisy',
-        cost: '$119.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Angel Wing Begonia',
-        cost: '$169.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'African Violet',
-        cost: '$199.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Beach Spider Lily',
-        cost: '$129.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Blushing Bromeliad',
-        cost: '$139.00'
-    }
-]
-
 const RelatedProductsSection: FC = () => {
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(receive())
+    }, [dispatch])
+
+    const {products} = useAppSelector(state => state.products)
+
     return (
         <section className={styles.section}>
             <div className={styles.container}>
@@ -41,8 +23,12 @@ const RelatedProductsSection: FC = () => {
                     <h2 className={styles.title}>Related Products</h2>
                 </div>
                 <div className={styles.images}>
-                    {products.map(product => (
-                        <Product className={styles.product} product={product}/>
+                    {products && products.slice(0, 4).map(product => (
+                        <Product
+                        key={product.sku}
+                        className={styles.product}
+                        product={product}
+                        />
                     ))}
                 </div>
             </div>

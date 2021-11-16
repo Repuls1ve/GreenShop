@@ -1,7 +1,7 @@
-import {FC, useState} from 'react'
+import {FC, useState, useEffect} from 'react'
 
-import {Categorie, SizeCategorie} from '../../types/filters'
-import {ProductPreview} from '../../models/IProduct'
+import {useAppDispatch, useAppSelector} from '../../hooks/redux'
+import {receive} from '../../store/slices/products-slice'
 
 import Range from '../Range'
 import Button from '../Button'
@@ -9,109 +9,19 @@ import Product from '../Product'
 
 import styles from './styles.module.css'
 
-const sizes: SizeCategorie[] = [
-    {
-        name: 'Small',
-        quantity: 119,
-    },
-    {
-        name: 'Medium',
-        quantity: 86,
-    },
-    {
-        name: 'Large',
-        quantity: 78,
-    }
-]
-
-const categories: Categorie[] = [
-    {
-        name: 'House Plants',
-        quantity: 33
-    },
-    {
-        name: 'Potter Plants',
-        quantity: 12
-    },
-    {
-        name: 'Seeds',
-        quantity: 65
-    },
-    {
-        name: 'Small Plants',
-        quantity: 39
-    },
-    {
-        name: 'Big Plants',
-        quantity: 23
-    },
-    {
-        name: 'Succulents',
-        quantity: 17
-    },
-    {
-        name: 'Terrariums',
-        quantity: 19
-    },
-    {
-        name: 'Gardening',
-        quantity: 13
-    },
-    {
-        name: 'Accessories',
-        quantity: 18
-    }
-]
-
-const products: ProductPreview[] = [
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Barberton Daisy',
-        cost: '$119.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Angel Wing Begonia',
-        cost: '$169.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'African Violet',
-        cost: '$199.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Beach Spider Lily',
-        cost: '$129.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Blushing Bromeliad',
-        cost: '$139.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Aluminm Plant',
-        cost: '$119.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Bird\'s Nest Fern',
-        cost: '$99.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Broadleaf Lady Palm',
-        cost: '$59.00'
-    },
-    {
-        image: 'https://i.ibb.co/MGwpHMH/image-product-preview.png',
-        name: 'Chinese Evergreen',
-        cost: '$39.00'
-    }
-]
-
 const ShopSection: FC = () => {
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(receive())
+    }, [dispatch])
+
+    const {
+        categoriesQty,
+        sizesQty,
+        products,
+    } = useAppSelector(state => state.products)
+
     let minPrice = 50,
         maxPrice = 1500
 
@@ -125,7 +35,7 @@ const ShopSection: FC = () => {
                 <div className={styles.filters}>
                     <div className={styles.categories}>
                         <h2 className={styles.filterTitle}>Categories</h2>
-                        {categories.map(categorie => (
+                        {categoriesQty && categoriesQty.map(categorie => (
                             <div key={categorie.name} className={styles.categorie}>
                                 <h3 className={styles.categorieName}>{categorie.name}</h3>
                                 <span className={styles.categorieQuantity}>{`(${categorie.quantity})`}</span>
@@ -147,7 +57,7 @@ const ShopSection: FC = () => {
                     </div>
                     <div className={styles.size}>
                         <h2 className={styles.filterTitle}>Size</h2>
-                        {sizes.map(size => (
+                        {sizesQty && sizesQty!.map(size => (
                             <div key={size.name} className={styles.categorie}>
                                 <h3 className={styles.categorieName}>{size.name}</h3>
                                 <span className={styles.categorieQuantity}>{`(${size.quantity})`}</span>
@@ -166,9 +76,9 @@ const ShopSection: FC = () => {
                         <h3 className={styles.sortFilter}>Sort by: Default Sorting</h3>
                     </div>
                     <div className={styles.content}>
-                        {products.map(product => (
+                        {products && products.map(product => (
                             <Product
-                            key={product.name}
+                            key={product.sku}
                             product={product}
                             />
                         ))}
