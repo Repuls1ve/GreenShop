@@ -1,19 +1,12 @@
-import {FC, useEffect} from 'react'
+import {FC} from 'react'
 
-import {useAppDispatch, useAppSelector} from '../../hooks/redux'
-import {receive} from '../../store/slices/products-slice'
+import {useAppSelector} from '../../hooks/redux'
 
 import Product from '../Product'
 
 import styles from './styles.module.css'
 
 const RelatedProductsSection: FC = () => {
-    const dispatch = useAppDispatch()
-
-    useEffect(() => {
-        dispatch(receive())
-    }, [dispatch])
-
     const {products} = useAppSelector(state => state.products)
 
     return (

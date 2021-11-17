@@ -3,23 +3,34 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import ProductsService from '../../services/products-service'
 import {categorie, IProduct, sizeCategorie} from '../../models/IProduct'
 
-import {getCategoriesQty, getSizesQty} from '../../utils/shop'
+import {getCategoriesQty, getPricesExtrema, getSizesQty} from '../../utils/shop'
 
 interface ProductsState {
     isLoading: boolean
     isError: boolean
-    categoriesQty?: categorie[]
-    sizesQty?: sizeCategorie[]
-    products?: IProduct[]
+    categoriesQty: categorie[]
+    sizesQty: sizeCategorie[]
+    pricesExtrema: {
+        min: number,
+        max: number
+    }
+    products: IProduct[]
 }
 
 const initialState: ProductsState = {
     isLoading: false,
-    isError: false
+    isError: false,
+    categoriesQty: [],
+    sizesQty: [],
+    pricesExtrema: {
+        min: 0,
+        max: 1000
+    },
+    products: []
 }
 
-export const receive = createAsyncThunk<IProduct[]>(
-    'products/receive',
+export const getProducts = createAsyncThunk<IProduct[]>(
+    'products/get',
     async () => {
         const response = await ProductsService.getProducts()
         const products = response.data
@@ -33,18 +44,19 @@ const productsSlice = createSlice({
     reducers: {
     },
     extraReducers: builder => {
-        builder.addCase(receive.fulfilled, (state, action) => {
+        builder.addCase(getProducts.fulfilled, (state, action) => {
             state.isLoading = false
             state.isError = false
             state.categoriesQty = getCategoriesQty(action.payload)
             state.sizesQty = getSizesQty(action.payload)
+            state.pricesExtrema = getPricesExtrema(action.payload)
             state.products = action.payload
         })
-        builder.addCase(receive.pending, (state, action) => {
+        builder.addCase(getProducts.pending, (state, action) => {
             state.isLoading = true
             state.isError = false
         })
-        builder.addCase(receive.rejected, (state, action) => {
+        builder.addCase(getProducts.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
         })

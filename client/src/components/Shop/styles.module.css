@@ -27,6 +27,8 @@
 
 .pages {
   display: flex;
+  justify-content: flex-end;
+  padding-right: 5%;
   flex-basis: 10%;
 }
 

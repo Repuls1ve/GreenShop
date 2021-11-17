@@ -1,12 +1,24 @@
-import {FC} from 'react'
+import {FC, useEffect} from 'react'
+import {useParams} from 'react-router-dom'
+
+import {useAppSelector} from '../../hooks/redux'
+import useDeviceDetect from '../../hooks/useDeviceDetect'
 
 import ProductViewSection from '../../components/ProductView'
 import RelatedProductsSection from '../../components/RelatedProducts'
 
-import useDeviceDetect from '../../hooks/useDeviceDetect'
-
 const Shop: FC = () => {
+    const {products} = useAppSelector(state => state.products)
     const {isMobile} = useDeviceDetect()
+    const {sku} = useParams()
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    const product = products.find(product => product.sku === parseInt(sku!)) 
+
+    if (!product) return <div>Not found</div>
 
     return (
         <>
@@ -16,7 +28,7 @@ const Shop: FC = () => {
         </main>
         : 
         <main>
-            <ProductViewSection />
+            <ProductViewSection product={product}/>
             <RelatedProductsSection />
         </main>
         }

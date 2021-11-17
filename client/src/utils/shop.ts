@@ -51,3 +51,23 @@ export const getSizesQty = (products: IProduct[]): sizeCategorie[] => {
     })
     return result
 }
+
+export const getPricesExtrema = (products: IProduct[]): {
+    min: number,
+    max: number
+} => {
+    const maxInitial = parseFloat(products[0].prices.slice(-1)[0].cost.slice(1))
+    const minInitial = parseFloat(products[0].prices[0].cost.slice(1))
+    const max = products.reduce((prev, item) => {
+        const cost = parseFloat(item.prices.slice(-1)[0].cost.slice(1))
+        return prev < cost ? cost : prev
+    }, maxInitial)
+    const min = products.reduce((prev, item) => {
+        const cost = parseFloat(item.prices[0].cost.slice(1))
+        return prev > cost ? cost : prev
+    }, minInitial)
+    return {
+        min,
+        max
+    }
+}

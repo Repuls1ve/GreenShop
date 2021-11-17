@@ -1,4 +1,5 @@
-import {FC} from 'react'
+import {FC, useState} from 'react'
+import {IProduct, size} from '../../models/IProduct'
 
 import Button from '../Button'
 
@@ -10,13 +11,32 @@ const pictures: any[] = [
     'https://i.ibb.co/fSTT9ZY/image-product-view.png',
 ] 
 
-const sizes: string[] = [
-    'S',
-    'M',
-    'L'
-]
+interface ProductViewSectionProps {
+    product: IProduct
+}
 
-const ProductViewSection: FC = () => {
+const ProductViewSection: FC<ProductViewSectionProps> = ({product}) => {
+    const [quantity, setQuantity] = useState(1) 
+    const [selectedSize, setSelectedSize] = useState<size>(product.sizes[0])
+
+    const handleCost = () => {
+        let cost
+        switch (selectedSize) {
+            case 'Small':
+                cost = product.prices[0].cost
+                break
+            case 'Medium':
+                cost = product.prices[1].cost
+                break
+            case 'Large':
+                cost = product.prices[2].cost
+                break
+        }
+        const currency = cost[0]
+        const price = parseFloat(cost.slice(1))
+        return `${currency}${(price * quantity).toFixed(2)}`
+    }
+
     return (
         <section className={styles.section}>
             <div className={styles.container}>
@@ -34,31 +54,47 @@ const ProductViewSection: FC = () => {
                         </div>
                     </div>
                     <div className={styles.headingDescriptions}>
-                        <h2 className={styles.title}>Barberton Daisy</h2>
-                        <h3 className={styles.cost}>$119.00</h3>
+                        <h2 className={styles.title}>{product.title}</h2>
+                        <h3 className={styles.cost}>{handleCost()}</h3>
                         <h3 className={styles.subTitle}>Short Description</h3>
                         <p className={styles.shortDescription}>The ceramic cylinder planters come with a wooden stand to help elevate your plants off the ground. The ceramic cylinder planters come with a wooden stand to help elevate your plants off the ground. </p>
                         <h3 className={styles.subTitle}>Size:</h3>
                         <div className={styles.sizes}>
-                            {sizes.map(size => (
-                                <div key={size} className={styles.size}>
-                                    <h3 className={styles.sizeName}>{size}</h3>
+                            {product.sizes.map(size => (
+                                <div
+                                key={size}
+                                className={`${styles.size} ${size === selectedSize && styles.sizeActive}`}
+                                onClick={() => setSelectedSize(size)}
+                                >
+                                    <h3 className={`${styles.sizeName} ${size === selectedSize && styles.sizeNameActive}`}>
+                                    {size[0]}
+                                    </h3>
                                 </div>
                             ))}
                         </div>
                         <div className={styles.quantity}>
-                            <div className={styles.decrease}>-</div>
-                            <div className={styles.quantityValue}>2</div>
-                            <div className={styles.increase}>+</div>
+                            <div
+                            className={styles.decrease}
+                            onClick={() => setQuantity(quantity <= 1 ? quantity : quantity - 1)}
+                            >-</div>
+                            <div className={styles.quantityValue}>{quantity}</div>
+                            <div
+                            className={styles.increase}
+                            onClick={() => setQuantity(quantity >= 10 ? quantity : quantity + 1)}
+                            >+</div>
                             <Button className={styles.buyButton}>Buy now</Button>
                             <Button className={styles.addToCartButton}>Add to cart</Button>
                             <Button className={styles.addToFavourites}>
                                 <img className={styles.favouriteIcon} src='https://i.ibb.co/cbgVRp8/icon-favourite.png' alt='favourite'/>
                             </Button>
                         </div>
-                        <h3 className={styles.metaInfo}>SKU: <span className={styles.metaValue}>1995751877966</span></h3>
-                        <h3 className={styles.metaInfo}>Categories: <span className={styles.metaValue}>Potter Plants</span></h3>
-                        <h3 className={styles.metaInfo}>Tags: <span className={styles.metaValue}>Home, Garden, Plants</span></h3>
+                        <h3 className={styles.metaInfo}>SKU: <span className={styles.metaValue}>{product.sku}</span></h3>
+                        <h3 className={styles.metaInfo}>
+                            Categories: <span className={styles.metaValue}>{product.categories.join(', ')}</span>
+                        </h3>
+                        <h3 className={styles.metaInfo}>
+                            Tags: <span className={styles.metaValue}>{product.tags.join(', ')}</span>
+                        </h3>
                         <div className={styles.sharing}>
                             <h3 className={styles.sharingTitle}>Share this product:</h3>
                             <img className={styles.sharingIcon} src='https://i.ibb.co/p3rbsSz/icon-facebook-black.png' alt='facebook'/>

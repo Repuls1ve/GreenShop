@@ -1,33 +1,32 @@
-import {FC, useState, useEffect} from 'react'
+import {FC, useState} from 'react'
 
-import {useAppDispatch, useAppSelector} from '../../hooks/redux'
-import {receive} from '../../store/slices/products-slice'
+import {useAppSelector} from '../../hooks/redux'
 
 import Range from '../Range'
 import Button from '../Button'
 import Product from '../Product'
+import Pagination from '../Pagination'
 
 import styles from './styles.module.css'
 
 const ShopSection: FC = () => {
-    const dispatch = useAppDispatch()
-
-    useEffect(() => {
-        dispatch(receive())
-    }, [dispatch])
-
     const {
         categoriesQty,
         sizesQty,
-        products,
+        pricesExtrema,
+        products
     } = useAppSelector(state => state.products)
 
-    let minPrice = 50,
-        maxPrice = 1500
+    let minPrice = pricesExtrema.min,
+        maxPrice = pricesExtrema.max
 
     const priceRangeDefault = [minPrice, maxPrice]
-
     const [priceRange, setPriceRange] = useState<number[]>(priceRangeDefault)
+
+    const pageSize = 9
+
+    const [page, setPage] = useState(1)
+    const pageProducts = products?.slice((page - 1) * pageSize, page * pageSize)
 
     return (
         <section className={styles.section}>
@@ -57,7 +56,7 @@ const ShopSection: FC = () => {
                     </div>
                     <div className={styles.size}>
                         <h2 className={styles.filterTitle}>Size</h2>
-                        {sizesQty && sizesQty!.map(size => (
+                        {sizesQty && sizesQty.map(size => (
                             <div key={size.name} className={styles.categorie}>
                                 <h3 className={styles.categorieName}>{size.name}</h3>
                                 <span className={styles.categorieQuantity}>{`(${size.quantity})`}</span>
@@ -76,7 +75,7 @@ const ShopSection: FC = () => {
                         <h3 className={styles.sortFilter}>Sort by: Default Sorting</h3>
                     </div>
                     <div className={styles.content}>
-                        {products && products.map(product => (
+                        {pageProducts && pageProducts.map(product => (
                             <Product
                             key={product.sku}
                             product={product}
@@ -86,7 +85,13 @@ const ShopSection: FC = () => {
                 </div>
             </div>
             <div className={styles.pages}>
-
+                <Pagination
+                hideOnSinglePage
+                current={page}
+                total={products?.length || 9}
+                pageSize={pageSize}
+                onChange={setPage}
+                />
             </div>
         </section>
     )

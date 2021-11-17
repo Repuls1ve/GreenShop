@@ -8,13 +8,15 @@ import styles from './styles.module.css'
 
 const Header: FC = () => {
     const [isModalOpen, setModalOpen] = useState(false)
-
     const openModal = () => setModalOpen(true)
 
     const switchActive = ({isActive}: {
         isActive: boolean
     }) => isActive ? styles.activeLink : styles.link
-
+    
+    const switchDynamicActive = (regex: RegExp) => {
+        return regex.test(window.location.pathname) ? styles.activeLink : styles.link
+    }
     return (
         <>
         <AuthModal
@@ -29,7 +31,7 @@ const Header: FC = () => {
                 </div>
                 <nav className={styles.nav}>
                     <NavLink to='/' className={switchActive}>Home</NavLink>
-                    <NavLink to='shop/test-sku' className={switchActive}>Shop</NavLink>
+                    <NavLink to='shop' className={() => switchDynamicActive(/\/shop(.+)?/)}>Shop</NavLink>
                     <NavLink to='plant-care' className={switchActive}>Plant Care</NavLink>
                     <NavLink to='blogs' className={switchActive}>Blogs</NavLink>
                 </nav>

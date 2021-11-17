@@ -4,7 +4,6 @@
   flex-basis: 33%;
   height: 33%;
   align-items: center;
-  cursor: pointer;
 }
 
 .description {
@@ -36,6 +35,7 @@
 .picture {
   display: flex;
   flex-basis: 100%;
+  cursor: pointer;
 }
 
 .image {
