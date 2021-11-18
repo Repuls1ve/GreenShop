@@ -4,6 +4,16 @@ const occurrencesCount = (array: any[], value: any): number => {
     return array.filter(v => v === value).length
 }
 
+export const setSessionPage = (page: number): void => sessionStorage.setItem('page', JSON.stringify(page))
+
+export const getSessionPage = (): number | null => {
+    const sessionPage = sessionStorage.getItem('page')
+    if (sessionPage) {
+        return parseInt(JSON.parse(sessionPage))
+    }
+    return null
+}
+
 export const getRelatedProducts = (product: IProduct, products: IProduct[]): IProduct[] => {
     return products.filter(item => item.categories.every(c => product.categories.includes(c)))
 }

@@ -1,6 +1,7 @@
-import {FC, useState} from 'react'
+import {FC, useState, useEffect} from 'react'
 
 import {useAppSelector} from '../../hooks/redux'
+import {getSessionPage, setSessionPage} from '../../utils/shop'
 
 import Range from '../Range'
 import Button from '../Button'
@@ -17,15 +18,18 @@ const ShopSection: FC = () => {
         products
     } = useAppSelector(state => state.products)
 
-    let minPrice = pricesExtrema.min,
-        maxPrice = pricesExtrema.max
-
-    const priceRangeDefault = [minPrice, maxPrice]
+    const priceRangeDefault = [pricesExtrema.min, pricesExtrema.max]
     const [priceRange, setPriceRange] = useState<number[]>(priceRangeDefault)
 
     const pageSize = 9
+    const sessionPage = getSessionPage()
 
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState<number>(sessionPage || 1)
+
+    useEffect(() => {
+        setSessionPage(page)
+    }, [page])
+
     const pageProducts = products?.slice((page - 1) * pageSize, page * pageSize)
 
     return (
@@ -45,8 +49,8 @@ const ShopSection: FC = () => {
                         <h2 className={styles.filterTitle}>Price Range</h2>
                         <Range
                         defaultValue={priceRangeDefault}
-                        min={minPrice}
-                        max={maxPrice}
+                        min={pricesExtrema.min}
+                        max={pricesExtrema.max}
                         onChange={setPriceRange}
                         />
                         <h3 className={styles.priceRange}>
