@@ -4,6 +4,10 @@ const occurrencesCount = (array: any[], value: any): number => {
     return array.filter(v => v === value).length
 }
 
+export const getRelatedProducts = (product: IProduct, products: IProduct[]): IProduct[] => {
+    return products.filter(item => item.categories.every(c => product.categories.includes(c)))
+}
+
 export const getCategoriesQty = (products: IProduct[]): categorie[] => {
     let categories: categorie['name'][] = []
     let result: categorie[] = []

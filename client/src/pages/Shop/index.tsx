@@ -29,7 +29,7 @@ const Shop: FC = () => {
         : 
         <main>
             <ProductViewSection product={product}/>
-            <RelatedProductsSection />
+            <RelatedProductsSection product={product} />
         </main>
         }
         </>

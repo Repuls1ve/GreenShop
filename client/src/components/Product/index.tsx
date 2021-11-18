@@ -7,14 +7,15 @@ import styles from './styles.module.css'
 
 interface ProductProps {
     product: IProduct
+    navigationPath?: string
     className?: string
 }
 
-const Product: FC<ProductProps> = ({className, product}) => {
+const Product: FC<ProductProps> = ({className, product, navigationPath}) => {
     const actualCost = product.prices.find(price => price.size === product.sizes[0])?.cost
     return (
         <div className={className || styles.container}>
-            <Link to={`shop/${product.sku}`} target='_blank' className={styles.picture}>
+            <Link to={navigationPath || `shop/${product.sku}`} target='_blank' className={styles.picture}>
                 <img className={styles.image} src={product.images[0]} alt='product'/>
             </Link>
             <div className={styles.description}>
