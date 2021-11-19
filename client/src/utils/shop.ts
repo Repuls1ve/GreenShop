@@ -1,4 +1,4 @@
-import {categorie, IProduct, sizeCategorie} from '../models/IProduct'
+import {category, IProduct, sizeCategory} from '../models/IProduct'
 
 const occurrencesCount = (array: any[], value: any): number => {
     return array.filter(v => v === value).length
@@ -18,9 +18,9 @@ export const getRelatedProducts = (product: IProduct, products: IProduct[]): IPr
     return products.filter(item => item.categories.every(c => product.categories.includes(c)))
 }
 
-export const getCategoriesQty = (products: IProduct[]): categorie[] => {
-    let categories: categorie['name'][] = []
-    let result: categorie[] = []
+export const getCategoriesQty = (products: IProduct[]): category[] => {
+    let categories: category['name'][] = []
+    let result: category[] = []
     products.forEach(product => {
         categories = categories.concat(product.categories)
     })
@@ -42,9 +42,9 @@ export const getCategoriesQty = (products: IProduct[]): categorie[] => {
     return result
 }
 
-export const getSizesQty = (products: IProduct[]): sizeCategorie[] => {
-    let sizes: sizeCategorie['name'][] = []
-    let result: sizeCategorie[] = []
+export const getSizesQty = (products: IProduct[]): sizeCategory[] => {
+    let sizes: sizeCategory['name'][] = []
+    let result: sizeCategory[] = []
     products.forEach(product => (
         sizes = sizes.concat(product.sizes)
     ))
@@ -70,16 +70,15 @@ export const getPricesExtrema = (products: IProduct[]): {
     min: number,
     max: number
 } => {
-    const maxInitial = parseFloat(products[0].prices.slice(-1)[0].cost.slice(1))
-    const minInitial = parseFloat(products[0].prices[0].cost.slice(1))
+    const initial = parseFloat(products[0].prices[0].cost.slice(1))
     const max = products.reduce((prev, item) => {
-        const cost = parseFloat(item.prices.slice(-1)[0].cost.slice(1))
+        const cost = parseFloat(item.prices[0].cost.slice(1))
         return prev < cost ? cost : prev
-    }, maxInitial)
+    }, initial)
     const min = products.reduce((prev, item) => {
         const cost = parseFloat(item.prices[0].cost.slice(1))
         return prev > cost ? cost : prev
-    }, minInitial)
+    }, initial)
     return {
         min,
         max

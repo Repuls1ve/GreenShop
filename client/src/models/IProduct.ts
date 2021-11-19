@@ -1,15 +1,15 @@
-export type categorieName =
+export type categoryName =
     'House Plants' | 'Potter Plants' | 'Seeds' |
     'Small Plants' | 'Big Plants' | 'Succulents' |
     'Terrariums' | 'Gardening' | 'Accessories'
 
-export type categorie = {
-    name: categorieName,
+export type category = {
+    name: categoryName,
     quantity: number
 }
 export type size = 'Small' | 'Medium' | 'Large'
 
-export type sizeCategorie = {
+export type sizeCategory = {
     name: size,
     quantity: number
 }
@@ -24,7 +24,7 @@ export interface IProduct {
     prices: price[]
     sizes: size[]
     sku: number
-    categories: categorieName[]
+    categories: categoryName[]
     tags: string[]
     images: string[]
 }

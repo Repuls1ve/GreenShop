@@ -1,15 +1,15 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 
 import ProductsService from '../../services/products-service'
-import {categorie, IProduct, sizeCategorie} from '../../models/IProduct'
+import {category, IProduct, sizeCategory} from '../../models/IProduct'
 
 import {getCategoriesQty, getPricesExtrema, getSizesQty} from '../../utils/shop'
 
 interface ProductsState {
     isLoading: boolean
     isError: boolean
-    categoriesQty: categorie[]
-    sizesQty: sizeCategorie[]
+    categoriesQty: category[]
+    sizesQty: sizeCategory[]
     pricesExtrema: {
         min: number,
         max: number

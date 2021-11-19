@@ -40,13 +40,13 @@
   justify-content: space-between;
 }
 
-.categorie {
+.category {
   padding-left: 10px;
   display: flex;
   cursor: pointer;
 }
 
-.categorieName {
+.categoryName {
   margin: 0;
   font-family: Cera Pro Medium;
   font-weight: 400;
@@ -55,7 +55,16 @@
   color: #3d3d3d;
 }
 
-.categorieQuantity {
+.categoryNameActive {
+  margin: 0;
+  font-family: Cera Pro Medium;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 40px;
+  color: #46a358;
+}
+
+.categoryQuantity {
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -64,6 +73,17 @@
   font-size: 15px;
   line-height: 40px;
   color: #3d3d3d;
+}
+
+.categoryQuantityActive {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  font-family: Cera Pro Medium;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 40px;
+  color: #46a358;
 }
 
 .pricing {
