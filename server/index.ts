@@ -5,6 +5,7 @@ import connectDB from './config/database'
 
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import errorMiddleware from './middlewares/error-middleware'
 
 import routes from './routes'
 
@@ -21,5 +22,7 @@ app.use(cors({
 }))
 
 app.use('/api', routes.productsRouter)
+app.use('/api/user', routes.userRouter)
+app.use(errorMiddleware)
 
-app.listen(process.env.PORT, () => console.log(`Server started on port ${process.env.PORT}`))
+app.listen(process.env.PORT!, () => console.log(`Server started on port ${process.env.PORT}`))
