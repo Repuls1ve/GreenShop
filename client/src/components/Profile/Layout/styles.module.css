@@ -1,0 +1,13 @@
+.desktop {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 10px;
+}
+
+.content {
+  margin-top: 50px;
+  display: flex;
+}

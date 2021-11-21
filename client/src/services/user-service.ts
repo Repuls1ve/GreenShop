@@ -21,6 +21,10 @@ class UserService {
     static async refresh(): Promise<AxiosResponse<IAuthSuccessResponse>> {
         return $api.post('/user/refresh')
     }
+
+    static async logout(): Promise<void> {
+        return $api.get('/user/logout')
+    }
 }
 
 export default UserService

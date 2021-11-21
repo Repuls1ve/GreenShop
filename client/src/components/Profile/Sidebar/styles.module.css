@@ -1,0 +1,57 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25%;
+  height: 430px;
+}
+
+.title {
+  margin: 0;
+  padding-left: 10px;
+  font-family: Cera Pro Medium;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 35px;
+  color: #3d3d3d;
+}
+
+.navLink {
+  margin: 0;
+  padding-left: 15px;
+  text-decoration: none;
+  font-family: Cera Pro Medium;
+  font-weight: 400;
+  font-size: 15px;
+  color: #727272;
+  line-height: 45px;
+}
+
+.navLinkActive {
+  margin: 0;
+  padding-left: 10px;
+  text-decoration: none;
+  font-family: Cera Pro Bold;
+  font-weight: 400;
+  font-size: 15px;
+  color: #46a358;
+  line-height: 45px;
+  border-left: 5px solid #46a358;
+}
+
+.logout {
+  padding-left: 15px;
+  justify-content: flex-start;
+  font-family: Cera Pro Bold;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 15px;
+  background-color: transparent;
+  color: #46a358;
+}
+
+.hr {
+  margin: 20px 0 15px 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(70, 163, 88, 0.5);
+}

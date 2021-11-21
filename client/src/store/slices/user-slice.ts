@@ -84,6 +84,13 @@ export const refresh = createAsyncThunk<
     }
 )
 
+export const logout = createAsyncThunk(
+    'user/logout',
+    async () => {
+        await UserService.logout()
+    }
+)
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -142,6 +149,11 @@ const userSlice = createSlice({
             state.isRefreshError = true
             state.user = undefined
             state.refreshError = action.payload?.message
+        })
+
+        builder.addCase(logout.fulfilled, (state, action) => {
+            state.isAuth = false
+            state.user = undefined
         })
     }
 })

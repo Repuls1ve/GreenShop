@@ -1,4 +1,5 @@
-import {FC, useState} from 'react'
+import {FC, useState, useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 import {Formik, Form, FormikHelpers} from 'formik'
 import ReactModal from 'react-modal'
 
@@ -20,6 +21,10 @@ interface AuthModalProps {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+interface AuthFormProps {
+    setIsOpen: AuthModalProps['setIsOpen']
+}
+
 interface RegisterFormValues {
     username: IUser['username']
     email: IUser['email']
@@ -32,10 +37,18 @@ interface LoginFormValues {
     password: string
 }
 
-const RegisterForm: FC = () => {
-    const {isLoading, error} = useAppSelector(state => state.user)
+const RegisterForm: FC<AuthFormProps> = ({setIsOpen}) => {
+    const navigate = useNavigate()
+    const {isAuth, isLoading, error} = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
     
+    useEffect(() => {
+        if (isAuth) {
+            navigate('/profile')
+            setIsOpen(false)
+        }
+    }, [isAuth, navigate, setIsOpen])
+
     const initialValues: RegisterFormValues = {
         username: '',
         email: '',
@@ -57,7 +70,7 @@ const RegisterForm: FC = () => {
         initialValues={initialValues}
         onSubmit={onSubmit}
         >
-            {({handleChange, values, setFieldValue, errors}) => (
+            {({handleChange, values, errors}) => (
                 <Form className={styles.form}>
                     <h3 className={styles.modalText}>Enter your email and password to register.</h3>
                     <TextField
@@ -109,9 +122,17 @@ const RegisterForm: FC = () => {
     )
 }
 
-const LoginForm: FC = () => {
-    const {isLoading, error} = useAppSelector(state => state.user)
+const LoginForm: FC<AuthFormProps> = ({setIsOpen}) => {
+    const navigate = useNavigate()
+    const {isAuth, isLoading, error} = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        if (isAuth) {
+            navigate('/profile')
+            setIsOpen(false)
+        }
+    }, [isAuth, navigate, setIsOpen])
 
     const initialValues: LoginFormValues = {
         email: '',
@@ -131,7 +152,7 @@ const LoginForm: FC = () => {
         initialValues={initialValues}
         onSubmit={onSubmit}
         >
-            {({handleChange, values, setFieldValue, errors}) => (
+            {({handleChange, values, errors}) => (
                 <Form className={styles.form}>
                     <h3 className={styles.modalText}>Enter your username and password to login.</h3>
                     <TextField
@@ -200,7 +221,7 @@ const AuthModal: FC<AuthModalProps> = ({isOpen, setIsOpen}) => {
                             >Register</span>
                         </h2>
                     </div>
-                    {branch === 'Login' ? <LoginForm /> : <RegisterForm />}
+                    {branch === 'Login' ? <LoginForm setIsOpen={setIsOpen}/> : <RegisterForm setIsOpen={setIsOpen} />}
                 </div>
             </div>
             <div className={styles.decorative}/>

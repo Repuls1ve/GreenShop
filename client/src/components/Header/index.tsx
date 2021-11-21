@@ -1,5 +1,5 @@
 import {FC, useState} from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Link} from 'react-router-dom'
 
 import {useAppSelector} from '../../hooks/redux'
 
@@ -47,7 +47,7 @@ const Header: FC = () => {
                     <h3 className={styles.username}>Loading..</h3>
                     :
                     isAuth ?
-                    <h3 className={styles.username}>{user?.username}</h3>
+                    <Link to='/profile' className={styles.username}>{user?.username}</Link>
                     :
                     <Button
                     onClick={openModal}

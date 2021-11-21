@@ -45,6 +45,15 @@ class UserController {
             next(err)
         }
     }
+
+    async logout(req: Request, res: Response, next: NextFunction) {
+        try {
+            res.clearCookie('token')
+            res.json({message: 'Logout success'})
+        } catch (err) {
+            next(err)
+        }
+    }
 }
 
 export default new UserController
