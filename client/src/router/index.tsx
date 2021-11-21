@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom'
 
 import {useAppDispatch} from '../hooks/redux'
 import {getProducts} from '../store/slices/products-slice'
+import {refresh} from '../store/slices/user-slice'
 
 import Layout from '../components/Layout'
 import Shop from '../pages/Shop'
@@ -13,6 +14,7 @@ const AppRouter: FC = () => {
 
     useEffect(() => {
         dispatch(getProducts())
+        dispatch(refresh())
     }, [dispatch])
 
     return (

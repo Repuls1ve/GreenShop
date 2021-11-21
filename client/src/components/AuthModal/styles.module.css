@@ -84,7 +84,7 @@
 }
 
 .textField {
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 
 .inputPassword {
@@ -96,7 +96,7 @@
 }
 
 .forgetPassword {
-  margin: 10px 0 15px 0;
+  margin: 0px 0 15px 0;
   align-self: flex-end;
   font-family: Cera Pro Regular;
   font-weight: 400;
@@ -176,4 +176,13 @@
   height: 10px;
   width: 100%;
   background-color: #46a358;
+}
+
+.inputError {
+  margin: 7px 0 7px 0;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 16px;
+  color: crimson;
 }

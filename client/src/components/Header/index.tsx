@@ -1,12 +1,16 @@
 import {FC, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 
+import {useAppSelector} from '../../hooks/redux'
+
 import Button from '../Button'
 import AuthModal from '../AuthModal'
 
 import styles from './styles.module.css'
 
 const Header: FC = () => {
+    const {isAuth, isRefreshLoading, user} = useAppSelector(state => state.user)
+
     const [isModalOpen, setModalOpen] = useState(false)
     const openModal = () => setModalOpen(true)
 
@@ -38,12 +42,20 @@ const Header: FC = () => {
                 <div className={styles.login}>
                     <img className={styles.search} src='https://i.ibb.co/QPJXwBv/icon-search.png' alt='search'/>
                     <img className={styles.cart} src='https://i.ibb.co/R08dtHQ/icon-cart.png' alt='cart'/>
+                    {
+                    isRefreshLoading ?
+                    <h3 className={styles.username}>Loading..</h3>
+                    :
+                    isAuth ?
+                    <h3 className={styles.username}>{user?.username}</h3>
+                    :
                     <Button
                     onClick={openModal}
                     >
                         <img className={styles.enter} src='https://i.ibb.co/Xs82gt5/icon-enter.png' alt='enter'/>
                         Login
                     </Button>
+                    }
                 </div>
             </div>
         </header>

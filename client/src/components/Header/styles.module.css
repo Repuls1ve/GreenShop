@@ -86,6 +86,14 @@
   margin-right: 3px;
 }
 
+.username {
+  font-family: Cera Pro Medium;
+  font-weight: 400;
+  font-size: 16px;
+  color: #3d3d3d;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1400px) {
   .company {
     flex-basis: 35%;

@@ -1,5 +1,6 @@
-import {Request, Response, NextFunction, response} from 'express'
+import {Request, Response, NextFunction} from 'express'
 
+import {IAuthRequest} from '../types/requests/IAuthRequest'
 import {IUserRegister, IUserLogin} from '../types/IUser'
 
 import userService from '../services/user-service'
@@ -13,7 +14,8 @@ class UserController {
                 email,
                 password
             })
-            res.json(userData)
+            res.cookie('token', userData.token, {httpOnly: true})
+            res.json({user: userData.user})
         } catch (err) {
             next(err)
         }
@@ -26,17 +28,19 @@ class UserController {
                 email,
                 password
             })
-            res.json(userData)
+            res.cookie('token', userData.token, {httpOnly: true})
+            res.json({user: userData.user})
         } catch (err) {
             next(err)
         }
     }
 
-    async refresh(req: Request<{}, {}, {token: string}>, res: Response, next: NextFunction) {
+    async refresh(req: IAuthRequest, res: Response, next: NextFunction) {
         try {
-            const {token} = req.body
-            const userData = await userService.refresh(token)
-            res.json(userData)
+            const user = req.user!
+            const userRefreshed = await userService.refresh(user.user)
+            res.cookie('token', userRefreshed.token, {httpOnly: true})
+            res.json({user: userRefreshed.user})
         } catch (err) {
             next(err)
         }

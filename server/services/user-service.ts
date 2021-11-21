@@ -39,11 +39,14 @@ class UserService {
         return {user: userData, token}
     }
 
-    async refresh(token: string): Promise<IUserLogged> {
-        const decoded = tokenService.verifyToken(token)
-        const userData = userDto(decoded)
-        const newToken = tokenService.createToken(userData)
-        return {user: userData, token: newToken}
+    async refresh(data: IUserDto): Promise<IUserLogged> {
+        const userData = await User.findOne({email: data.email})
+        if (!userData) {
+            throw Exception.NotFound('The user was probably deleted')
+        }
+        const userRefreshed = userDto(userData)
+        const newToken = tokenService.createToken(userRefreshed)
+        return {user: userRefreshed, token: newToken}
     }
 }
 

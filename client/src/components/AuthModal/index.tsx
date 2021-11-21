@@ -1,81 +1,169 @@
 import {FC, useState} from 'react'
+import {Formik, Form, FormikHelpers} from 'formik'
 import ReactModal from 'react-modal'
+
+import {useAppSelector, useAppDispatch} from '../../hooks/redux'
+import {register, login} from '../../store/slices/user-slice'
+
+import {IUser} from '../../models/IUser'
+import {RegistrationValidationSchema, LoginValidationSchema} from '../../utils/validation'
 
 import TextField from '../TextField'
 import Button from '../Button'
 
 import styles from './styles.module.css'
 
+type branch = 'Login' | 'Register'
+
 interface AuthModalProps {
     isOpen: boolean
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-type branch = 'Login' | 'Register'
+interface RegisterFormValues {
+    username: IUser['username']
+    email: IUser['email']
+    password: string
+    confirmPassword: string
+}
+
+interface LoginFormValues {
+    email: IUser['email']
+    password: string
+}
 
 const RegisterForm: FC = () => {
+    const {isLoading, error} = useAppSelector(state => state.user)
+    const dispatch = useAppDispatch()
+    
+    const initialValues: RegisterFormValues = {
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    }
+
+    const onSubmit = (values: RegisterFormValues, actions: FormikHelpers<RegisterFormValues>) => {
+        dispatch(register({
+            username: values.username,
+            email: values.email,
+            password: values.password
+        }))
+    }
+
     return (
-        <form className={styles.form} onSubmit={e => e.preventDefault()}>
-            <h3 className={styles.modalText}>Enter your email and password to register.</h3>
-            <TextField
-            containerClassName={styles.textField}
-            placeholder='Username'
-            />
-            <TextField
-            containerClassName={styles.textField}
-            placeholder='Enter your email address'
-            />
-            <TextField
-            containerClassName={styles.textField}
-            className={styles.inputPassword}
-            type='password'
-            placeholder='Password'
-            />
-            <TextField
-            containerClassName={styles.textField}
-            className={styles.inputPassword}
-            type='password'
-            placeholder='Confirm Password'
-            />
-            <Button className={styles.authButton}>Register</Button>
-            <div className={styles.separator}>Or register with</div>
-            <Button className={styles.serviceButton}>
-                <img className={styles.serviceIconGoogle} src='https://i.ibb.co/qDpRMyC/icon-google-color.png' alt='google'/>
-                <h3 className={styles.serviceButtonText}>Continue with Google</h3>
-            </Button>
-            <Button className={styles.serviceButton}>
-                <img className={styles.serviceIconFacebook} src='https://i.ibb.co/ZmJbZfz/icon-facebook-color.png' alt='facebook'/>
-                <h3 className={styles.serviceButtonText}>Continue with Facebook</h3>
-            </Button>
-        </form>
+        <Formik
+        validationSchema={RegistrationValidationSchema}
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        >
+            {({handleChange, values, setFieldValue, errors}) => (
+                <Form className={styles.form}>
+                    <h3 className={styles.modalText}>Enter your email and password to register.</h3>
+                    <TextField
+                    containerClassName={styles.textField}
+                    placeholder='Username'
+                    onChange={handleChange('username')}
+                    value={values.username}
+                    />
+                    <h3 className={styles.inputError}>{errors.username}</h3>
+                    <TextField
+                    containerClassName={styles.textField}
+                    placeholder='Enter your email address'
+                    onChange={handleChange('email')}
+                    value={values.email}
+                    />
+                    <h3 className={styles.inputError}>{errors.email}</h3>
+                    <TextField
+                    containerClassName={styles.textField}
+                    className={styles.inputPassword}
+                    type='password'
+                    placeholder='Password'
+                    onChange={handleChange('password')}
+                    value={values.password}
+                    />
+                    <h3 className={styles.inputError}>{errors.password}</h3>
+                    <TextField
+                    containerClassName={styles.textField}
+                    className={styles.inputPassword}
+                    type='password'
+                    placeholder='Confirm Password'
+                    onChange={handleChange('confirmPassword')}
+                    value={values.confirmPassword}
+                    />
+                    <h3 className={styles.inputError}>{errors.confirmPassword}</h3>
+                    <Button type='submit' className={styles.authButton}>Register</Button>
+                    <h3 className={styles.inputError}>{isLoading ? 'Loading...' : error}</h3>
+                    <div className={styles.separator}>Or register with</div>
+                    <Button className={styles.serviceButton}>
+                        <img className={styles.serviceIconGoogle} src='https://i.ibb.co/qDpRMyC/icon-google-color.png' alt='google'/>
+                        <h3 className={styles.serviceButtonText}>Continue with Google</h3>
+                    </Button>
+                    <Button className={styles.serviceButton}>
+                        <img className={styles.serviceIconFacebook} src='https://i.ibb.co/ZmJbZfz/icon-facebook-color.png' alt='facebook'/>
+                        <h3 className={styles.serviceButtonText}>Continue with Facebook</h3>
+                    </Button>
+                </Form>
+            )}
+        </Formik>
     )
 }
 
 const LoginForm: FC = () => {
+    const {isLoading, error} = useAppSelector(state => state.user)
+    const dispatch = useAppDispatch()
+
+    const initialValues: LoginFormValues = {
+        email: '',
+        password: ''
+    }
+
+    const onSubmit = (values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
+        dispatch(login({
+            email: values.email,
+            password: values.password
+        }))
+    }
+
     return (
-        <form className={styles.form} onSubmit={e => e.preventDefault()}>
-            <h3 className={styles.modalText}>Enter your username and password to login.</h3>
-            <TextField
-            containerClassName={styles.textField}
-            placeholder='Enter your email address'
-            />
-            <TextField
-            className={styles.inputPassword}
-            type='password'
-            placeholder='Password'
-            />
-            <h3 className={styles.forgetPassword}>Forgot Password?</h3>
-            <Button className={styles.authButton}>Login</Button>
-            <div className={styles.separator}>Or login with</div>
-            <Button className={styles.serviceButton}>
-                <img className={styles.serviceIconGoogle} src='https://i.ibb.co/qDpRMyC/icon-google-color.png' alt='google'/>
-                <h3 className={styles.serviceButtonText}>Login with Google</h3>
-            </Button>
-            <Button className={styles.serviceButton}>
-                <img className={styles.serviceIconFacebook} src='https://i.ibb.co/ZmJbZfz/icon-facebook-color.png' alt='facebook'/>
-                <h3 className={styles.serviceButtonText}>Login with Facebook</h3>
-            </Button>
-        </form>
+        <Formik
+        validationSchema={LoginValidationSchema}
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        >
+            {({handleChange, values, setFieldValue, errors}) => (
+                <Form className={styles.form}>
+                    <h3 className={styles.modalText}>Enter your username and password to login.</h3>
+                    <TextField
+                    containerClassName={styles.textField}
+                    placeholder='Enter your email address'
+                    onChange={handleChange('email')}
+                    value={values.email}
+                    />
+                    <h3 className={styles.inputError}>{errors.email}</h3>
+                    <TextField
+                    className={styles.inputPassword}
+                    type='password'
+                    placeholder='Password'
+                    onChange={handleChange('password')}
+                    value={values.password}
+                    />
+                    <h3 className={styles.inputError}>{errors.password}</h3>
+                    <h3 className={styles.forgetPassword}>Forgot Password?</h3>
+                    <Button type='submit' className={styles.authButton}>Login</Button>
+                    <h3 className={styles.inputError}>{isLoading ? 'Loading...' : error}</h3>
+                    <div className={styles.separator}>Or login with</div>
+                    <Button className={styles.serviceButton}>
+                        <img className={styles.serviceIconGoogle} src='https://i.ibb.co/qDpRMyC/icon-google-color.png' alt='google'/>
+                        <h3 className={styles.serviceButtonText}>Login with Google</h3>
+                    </Button>
+                    <Button className={styles.serviceButton}>
+                        <img className={styles.serviceIconFacebook} src='https://i.ibb.co/ZmJbZfz/icon-facebook-color.png' alt='facebook'/>
+                        <h3 className={styles.serviceButtonText}>Login with Facebook</h3>
+                    </Button>
+                </Form>
+            )}
+        </Formik>
     )
 }
 

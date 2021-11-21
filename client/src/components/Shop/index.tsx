@@ -39,12 +39,16 @@ const ShopSection: FC = () => {
     const [page, setPage] = useState<number>(sessionPage || 1)
 
     useEffect(() => {
+        setPage(1)
+    }, [filters])
+
+    useEffect(() => {
         setSessionPage(page)
     }, [page])
 
     const filteredProducts = getFilteredProducts(filters, products)
     const pageProducts = filteredProducts.slice((page - 1) * pageSize, page * pageSize)
-
+    
     return (
         <section className={styles.section}>
             <div className={styles.container}>

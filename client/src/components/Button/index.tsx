@@ -1,22 +1,19 @@
-import {FC, ReactNode} from 'react'
+import {FC, ButtonHTMLAttributes} from 'react'
 
 import styles from './styles.module.css'
 
-interface ButtonProps {
-    children: ReactNode
-    onClick?: () => void
-    className?: string
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: FC<ButtonProps> = ({
     children,
-    onClick,
-    className
+    className,
+    ...props
 }) => {
     return (
         <button
-        onClick={onClick}
         className={`${styles.default} ${className}`}
+        {...props}
         >
             {children}
         </button>

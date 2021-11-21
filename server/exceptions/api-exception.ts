@@ -17,6 +17,10 @@ class Exception extends Error {
     static Forbidden(message: string) {
         return new Exception(403, message)
     }
+
+    static NotFound(message: string) {
+        return new Exception(404, message)
+    }
 }
 
 export default Exception
