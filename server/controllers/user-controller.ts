@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from 'express'
 
 import {IAuthRequest} from '../types/requests/IAuthRequest'
-import {IUserRegister, IUserLogin} from '../types/IUser'
+import {IUserRegister, IUserLogin, IUserChangePassword} from '../types/IUser'
 
 import userService from '../services/user-service'
 
@@ -50,6 +50,17 @@ class UserController {
         try {
             res.clearCookie('token')
             res.json({message: 'Logout success'})
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    async changePassword(req: IAuthRequest<IUserChangePassword>, res: Response, next: NextFunction) {
+        try {
+            const user = req.user!
+            const {...password} = req.body
+            await userService.changePassword(user.user, password.current, password.new)
+            res.json({message: 'Password successfully changed'})
         } catch (err) {
             next(err)
         }

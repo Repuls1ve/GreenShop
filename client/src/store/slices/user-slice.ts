@@ -1,28 +1,36 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 
 import {IAuthErrorResponse, IAuthSuccessResponse} from '../../types/responses/IAuthResponse'
-import {IUser, IUserLogin, IUserRegister} from '../../models/IUser'
+import {IDefaultSuccessResponse} from '../../types/responses/IDefaultResponse'
+import {IUser, IUserChangePassword, IUserLogin, IUserRegister} from '../../models/IUser'
 
 import errorHandler from '../../utils/error-handler'
 import UserService from '../../services/user-service'
 
 interface UserState {
     isAuth: boolean
+    user?: IUser
     isLoading: boolean
+    isError: boolean
+    error?: string
     isRefreshLoading: boolean
     isRefreshError: boolean
-    isError: boolean
-    user?: IUser
-    error?: string
     refreshError?: string
+    isPasswordLoading: boolean
+    isPasswordError: boolean
+    isPasswordSuccess: boolean
+    passwordError?: string
 }
 
 const initialState: UserState = {
     isAuth: false,
     isLoading: false,
+    isError: false,
     isRefreshLoading: false,
     isRefreshError: false,
-    isError: false
+    isPasswordLoading: false,
+    isPasswordError: false,
+    isPasswordSuccess: false
 }
 
 const unexpectedError: IAuthErrorResponse = {
@@ -84,6 +92,24 @@ export const refresh = createAsyncThunk<
     }
 )
 
+export const changePassword = createAsyncThunk<
+    IDefaultSuccessResponse,
+    IUserChangePassword,
+    {rejectValue: IAuthErrorResponse}
+>(
+    'user/changePassword',
+    async (credentials: IUserChangePassword, thunkAPI) => {
+        try {
+            const response = await UserService.changePassword(credentials)
+            const data = response.data
+            return data
+        } catch (err) {
+            const data = errorHandler<IAuthErrorResponse>(err, unexpectedError)
+            return thunkAPI.rejectWithValue(data)
+        }
+    }
+)
+
 export const logout = createAsyncThunk(
     'user/logout',
     async () => {
@@ -97,6 +123,22 @@ const userSlice = createSlice({
     reducers: {
     },
     extraReducers: builder => {
+        builder.addCase(changePassword.fulfilled, (state, action) => {
+            state.isPasswordSuccess = true
+            state.isPasswordLoading = false
+            state.isPasswordError = false
+            state.passwordError = undefined
+        })
+        builder.addCase(changePassword.pending, (state, action) => {
+            state.isPasswordLoading = true
+        })
+        builder.addCase(changePassword.rejected, (state, action) => {
+            state.isPasswordSuccess = false
+            state.isPasswordError = true
+            state.isPasswordLoading = false
+            state.passwordError = action.payload?.message
+        })
+
         builder.addCase(register.fulfilled, (state, action) => {
             state.isAuth = true
             state.isLoading = false

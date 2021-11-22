@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 
-import {IUserRegister, IUserLogged, IUserLogin, IUserDto} from '../types/IUser'
+import {IUserRegister, IUserLogged, IUserLogin, IUserDto, IUser} from '../types/IUser'
 import User from '../models/user-model'
 import userDto from '../dtos/user-dto'
 
@@ -47,6 +47,22 @@ class UserService {
         const userRefreshed = userDto(userData)
         const newToken = tokenService.createToken(userRefreshed)
         return {user: userRefreshed, token: newToken}
+    }
+
+    async changePassword(user: IUserDto, current: IUser['password'], newPassword: IUser['password']) {
+        if (current === newPassword) {
+            throw Exception.Forbidden('Your new password cannot match your current one')
+        }
+        const userData = await User.findOne({email: user.email})
+        if (!userData) {
+            throw Exception.NotFound('It is likely that your profile no longer exists')
+        }
+        const isPasswordEquals = await bcrypt.compare(current, userData.password)
+        if (!isPasswordEquals) {
+            throw Exception.Forbidden('You entered your current password incorrectly')
+        }
+        userData.password = await bcrypt.hash(newPassword, 12)
+        await userData.save()
     }
 }
 

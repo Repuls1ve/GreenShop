@@ -28,3 +28,8 @@ export interface IUserLogin {
     email: IUser['email']
     password: string
 }
+
+export interface IUserChangePassword {
+    current: string
+    new: string
+}

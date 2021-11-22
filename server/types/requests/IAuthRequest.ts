@@ -1,6 +1,6 @@
 import {Request} from 'express'
 import {IUserLogged} from '../IUser'
 
-export interface IAuthRequest extends Request {
+export interface IAuthRequest<T = any> extends Request<{}, {}, T> {
     user?: IUserLogged
 }

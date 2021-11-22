@@ -45,3 +45,8 @@ export interface IUserLogged {
     user: IUserDto
     token: string
 }
+
+export interface IUserChangePassword {
+    current: IUser['password']
+    new: IUser['password']
+}

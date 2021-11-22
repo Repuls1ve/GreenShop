@@ -10,4 +10,6 @@ router.post('/login', userController.login)
 router.post('/refresh', authMiddleware, userController.refresh)
 router.get('/logout', userController.logout)
 
+router.put('/password', authMiddleware, userController.changePassword)
+
 export default router
