@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from 'express'
 
 import {IAuthRequest} from '../types/requests/IAuthRequest'
-import {IUserRegister, IUserLogin, IUserChangePassword} from '../types/IUser'
+import {IUserRegister, IUserLogin, IUserChangePassword, IUserEdit} from '../types/IUser'
 
 import userService from '../services/user-service'
 
@@ -60,7 +60,18 @@ class UserController {
             const user = req.user!
             const {...password} = req.body
             await userService.changePassword(user.user, password.current, password.new)
-            res.json({message: 'Password successfully changed'})
+            res.json({message: 'Password successfully changed.'})
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    async edit(req: IAuthRequest<IUserEdit>, res: Response, next: NextFunction) {
+        try {
+            const user = req.user!
+            const {...fields} = req.body
+            const editedUser = await userService.edit(user.user, fields)
+            res.json({user: editedUser, message: 'Personal information updated'})
         } catch (err) {
             next(err)
         }

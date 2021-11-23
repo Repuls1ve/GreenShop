@@ -33,3 +33,10 @@ export interface IUserChangePassword {
     current: string
     new: string
 }
+
+export interface IUserEdit {
+    firstName: IUser['firstName']
+    lastName: IUser['lastName']
+    phone: IUser['phone']
+    address: IUser['address']
+}

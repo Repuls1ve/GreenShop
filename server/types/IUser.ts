@@ -50,3 +50,10 @@ export interface IUserChangePassword {
     current: IUser['password']
     new: IUser['password']
 }
+
+export interface IUserEdit {
+    firstName: IUser['firstName']
+    lastName: IUser['lastName']
+    address: IUser['address']
+    phone: IUser['phone']
+}

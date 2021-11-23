@@ -1,5 +1,5 @@
 import {AxiosResponse} from 'axios'
-import {IUserRegister, IUserLogin, IUserChangePassword} from '../models/IUser'
+import {IUserRegister, IUserLogin, IUserChangePassword, IUserEdit} from '../models/IUser'
 import {IAuthSuccessResponse} from '../types/responses/IAuthResponse'
 import {IDefaultSuccessResponse} from '../types/responses/IDefaultResponse'
 
@@ -24,6 +24,10 @@ class UserService {
 
     static async changePassword(credentials: IUserChangePassword): Promise<AxiosResponse<IDefaultSuccessResponse>> {
         return $api.put('/user/password', credentials)
+    }
+
+    static async edit(fields: IUserEdit): Promise<AxiosResponse<IAuthSuccessResponse>> {
+        return $api.put('/user/edit', fields)
     }
 }
 

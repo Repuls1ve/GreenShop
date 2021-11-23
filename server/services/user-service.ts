@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 
-import {IUserRegister, IUserLogged, IUserLogin, IUserDto, IUser} from '../types/IUser'
+import {IUserRegister, IUserLogged, IUserLogin, IUserDto, IUser, IUserEdit} from '../types/IUser'
 import User from '../models/user-model'
 import userDto from '../dtos/user-dto'
 
@@ -49,7 +49,7 @@ class UserService {
         return {user: userRefreshed, token: newToken}
     }
 
-    async changePassword(user: IUserDto, current: IUser['password'], newPassword: IUser['password']) {
+    async changePassword(user: IUserDto, current: IUser['password'], newPassword: IUser['password']): Promise<void> {
         if (current === newPassword) {
             throw Exception.Forbidden('Your new password cannot match your current one')
         }
@@ -63,6 +63,20 @@ class UserService {
         }
         userData.password = await bcrypt.hash(newPassword, 12)
         await userData.save()
+    }
+
+    async edit(user: IUserDto, fields: IUserEdit): Promise<IUserDto> {
+        const userData = await User.findOne({email: user.email})
+        if (!userData) {
+            throw Exception.NotFound('It is likely that your profile no longer exists')
+        }
+        userData.firstName = fields.firstName
+        userData.lastName = fields.lastName
+        userData.phone = fields.phone
+        userData.address = fields.address
+        const updated = await userData.save()
+        const editedUser = userDto(updated)
+        return editedUser
     }
 }
 

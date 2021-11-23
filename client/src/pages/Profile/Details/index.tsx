@@ -2,7 +2,7 @@ import {FC} from 'react'
 import {Formik, Form, FormikHelpers} from 'formik'
 
 import {useAppSelector, useAppDispatch} from '../../../hooks/redux'
-import {changePassword} from '../../../store/slices/user-slice'
+import {changePassword, resetEditState, resetPasswordState, edit} from '../../../store/slices/user-slice'
 
 import {AccountDetailsValidationSchema} from '../../../utils/validation'
 import {IUser} from '../../../models/IUser'
@@ -26,7 +26,13 @@ interface FormValues {
 const ProfileDetails: FC = () => {
     const dispatch = useAppDispatch()
     const {...user} = useAppSelector(state => state.user.user!)
-    const {isPasswordLoading, isPasswordSuccess, passwordError} = useAppSelector(state => state.user)
+    const {
+        isPasswordLoading,
+        isPasswordSuccess,
+        isPasswordError,
+        passwordError
+    } = useAppSelector(state => state.user)
+    const {isEditLoading, isEditSuccess} = useAppSelector(state => state.user)
 
     const initialValues: FormValues = {
         firstName: user.firstName,
@@ -40,12 +46,20 @@ const ProfileDetails: FC = () => {
     }
 
     const onSave = (values: FormValues, actions: FormikHelpers<FormValues>) => {
+        dispatch(resetPasswordState())
+        dispatch(resetEditState())
         if (values.newPassword) {
             dispatch(changePassword({
                 current: values.currentPassword,
                 new: values.newPassword
             }))
         }
+        dispatch(edit({
+            firstName: values.firstName,
+            lastName: values.lastName,
+            phone: values.phone,
+            address: user.address
+        }))
     }
 
     return (
@@ -141,14 +155,20 @@ const ProfileDetails: FC = () => {
                         <div className={styles.row}>
                             <Button type='submit' className={styles.save}>Save Changes</Button>
                             <h3
-                            className={isPasswordSuccess ? styles.serverSuccess : styles.serverError}
+                            className={isPasswordSuccess || isEditSuccess ? styles.serverSuccess : styles.serverError}
                             >{
-                            isPasswordLoading ? 
+                            isPasswordLoading || isEditLoading ? 
                             <span className={styles.serverLoading}>Loading...</span>
-                            : 
-                            isPasswordSuccess ? 
-                            'Password successfully changed'
-                            : passwordError
+                            :
+                            isPasswordSuccess && isEditSuccess ? 
+                            'Password successfully changed. Personal information updated.'
+                            :
+                            isEditSuccess && isPasswordError ?
+                            <span>Personal information updated.<span className={styles.serverError}>{passwordError}</span></span>
+                            :
+                            isEditSuccess ?
+                            'Personal information updated'
+                            : ''
                             }</h3>
                         </div>
                     </Form>

@@ -11,5 +11,6 @@ router.post('/refresh', authMiddleware, userController.refresh)
 router.get('/logout', userController.logout)
 
 router.put('/password', authMiddleware, userController.changePassword)
+router.put('/edit', authMiddleware, userController.edit)
 
 export default router

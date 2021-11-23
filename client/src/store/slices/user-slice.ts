@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 
 import {IAuthErrorResponse, IAuthSuccessResponse} from '../../types/responses/IAuthResponse'
 import {IDefaultSuccessResponse} from '../../types/responses/IDefaultResponse'
-import {IUser, IUserChangePassword, IUserLogin, IUserRegister} from '../../models/IUser'
+import {IUser, IUserChangePassword, IUserEdit, IUserLogin, IUserRegister} from '../../models/IUser'
 
 import errorHandler from '../../utils/error-handler'
 import UserService from '../../services/user-service'
@@ -20,6 +20,10 @@ interface UserState {
     isPasswordError: boolean
     isPasswordSuccess: boolean
     passwordError?: string
+    isEditLoading: boolean
+    isEditError: boolean
+    isEditSuccess: boolean
+    editError?: string
 }
 
 const initialState: UserState = {
@@ -30,7 +34,10 @@ const initialState: UserState = {
     isRefreshError: false,
     isPasswordLoading: false,
     isPasswordError: false,
-    isPasswordSuccess: false
+    isPasswordSuccess: false,
+    isEditLoading: false,
+    isEditError: false,
+    isEditSuccess: false,
 }
 
 const unexpectedError: IAuthErrorResponse = {
@@ -110,6 +117,24 @@ export const changePassword = createAsyncThunk<
     }
 )
 
+export const edit = createAsyncThunk<
+    IAuthSuccessResponse,
+    IUserEdit,
+    {rejectValue: IAuthErrorResponse}
+>(
+    'user/edit',
+    async (fields: IUserEdit, thunkAPI) => {
+        try {
+            const response = await UserService.edit(fields)
+            const data = response.data
+            return data
+        } catch (err) {
+            const data = errorHandler<IAuthErrorResponse>(err, unexpectedError)
+            return thunkAPI.rejectWithValue(data)
+        }
+    }
+)
+
 export const logout = createAsyncThunk(
     'user/logout',
     async () => {
@@ -121,8 +146,35 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        resetPasswordState: (state) => {
+            state.isPasswordSuccess = false
+            state.isPasswordError = false
+            state.passwordError = undefined
+        },
+        resetEditState: (state) => {
+            state.isEditSuccess = false
+            state.isEditError = false
+            state.editError = undefined
+        }
     },
     extraReducers: builder => {
+        builder.addCase(edit.fulfilled, (state, action) => {
+            state.user = action.payload.user
+            state.isEditSuccess = true
+            state.isEditLoading = false
+            state.isEditError = false
+            state.editError = undefined
+        })
+        builder.addCase(edit.pending, (state, action) => {
+            state.isEditLoading = true
+        })
+        builder.addCase(edit.rejected, (state, action) => {
+            state.isEditSuccess = false
+            state.isEditError = true
+            state.isEditLoading = false
+            state.editError = action.payload?.message
+        })
+
         builder.addCase(changePassword.fulfilled, (state, action) => {
             state.isPasswordSuccess = true
             state.isPasswordLoading = false
@@ -199,5 +251,7 @@ const userSlice = createSlice({
         })
     }
 })
+
+export const {resetEditState, resetPasswordState} = userSlice.actions
 
 export default userSlice.reducer
