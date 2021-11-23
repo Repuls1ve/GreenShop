@@ -1,0 +1,94 @@
+.container {
+  margin-left: 2%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 15px;
+  font-family: Cera Pro Bold;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 16px;
+  color: #3d3d3d;
+}
+
+.subtitle {
+  margin: 0;
+  margin-bottom: 25px;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  color: #727277;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 40%;
+  margin-right: auto;
+}
+
+.save {
+  margin-bottom: 15px;
+  font-family: Cera Pro Medium;
+  font-weight: 400;
+  border-radius: 3px;
+  width: 131px;
+}
+
+.inputError {
+  margin: 7px 0 7px;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 16px;
+  color: crimson;
+  height: 16px;
+}
+
+.shellReadOnly {
+  border: 1px solid #eaeaea;
+}
+
+.serverError {
+  margin-left: 15px;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 16px;
+  color: crimson;
+  height: 16px;
+}
+
+.serverSuccess {
+  margin-left: 15px;
+  font-family: Cera Pro Regular;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 16px;
+  color: #46a358;
+  height: 16px;
+}
+
+.serverLoading {
+  color: #727272;
+}
+
+.buttonRow {
+  display: flex;
+}

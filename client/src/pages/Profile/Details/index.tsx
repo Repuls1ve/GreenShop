@@ -1,4 +1,4 @@
-import {FC} from 'react'
+import {FC, useEffect} from 'react'
 import {Formik, Form, FormikHelpers} from 'formik'
 
 import {useAppSelector, useAppDispatch} from '../../../hooks/redux'
@@ -34,6 +34,11 @@ const ProfileDetails: FC = () => {
     } = useAppSelector(state => state.user)
     const {isEditLoading, isEditSuccess} = useAppSelector(state => state.user)
 
+    useEffect(() => {
+        dispatch(resetPasswordState())
+        dispatch(resetEditState())
+    }, [dispatch])
+
     const initialValues: FormValues = {
         firstName: user.firstName,
         lastName: user.lastName,
@@ -47,7 +52,6 @@ const ProfileDetails: FC = () => {
 
     const onSave = (values: FormValues, actions: FormikHelpers<FormValues>) => {
         dispatch(resetPasswordState())
-        dispatch(resetEditState())
         if (values.newPassword) {
             dispatch(changePassword({
                 current: values.currentPassword,
@@ -95,7 +99,6 @@ const ProfileDetails: FC = () => {
                             <div className={styles.input}>
                                 <TextField
                                 label='Email address'
-                                onChange={handleChange('email')}
                                 shellActive={styles.shellReadOnly}
                                 value={values.email}
                                 readOnly
@@ -115,7 +118,6 @@ const ProfileDetails: FC = () => {
                             <div className={styles.input}>
                                 <TextField
                                 label='Username'
-                                onChange={handleChange('username')}
                                 shellActive={styles.shellReadOnly}
                                 value={values.username}
                                 readOnly
